@@ -1,11 +1,9 @@
 <queries>
-  <query name="org.sts.powerschool.oneroster.orgs" coreTable="schools" flattened="true">
+  <query name="net.ksdr1.powerschool.oneroster.orgs" coreTable="schools" flattened="true">
 	<summary>OneRoster 1.1 orgs</summary>
-	<description>JTR Customized</description>
 	<args>
 		<arg name="schoolid" column="schools.id" required="false" description="School IDs" default="'701','702','703','704'" />
 	</args>
-
   <columns>
       <column column="SCHOOLS.SCHOOL_NUMBER">a_sourcedId</column>
 	  <column column="SCHOOLS.ABBREVIATION">b_status</column>
@@ -37,7 +35,7 @@ union all
 from schools
 left join (
     select s.schoolid,
-    COUNT(s.ID) as NO_OF_SECTIONS 
+    COUNT(s.ID) as NO_OF_SECTIONS
     from sections s
     join terms tb on tb.id=s.termid and tb.schoolid=s.schoolid
     where s.termid>= 3200 and tb.lastday>=sysdate
