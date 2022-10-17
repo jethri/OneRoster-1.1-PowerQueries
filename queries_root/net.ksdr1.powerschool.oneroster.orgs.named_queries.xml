@@ -3,8 +3,8 @@
 	<summary>OneRoster 1.1 orgs</summary>
 	<description>JTR Customized</description>
 	<args>
-<arg name="schoolid" column="schools.id" required="false" description="School IDs" default="'701','702','703','704'" />	</args>
-
+<arg name="schoolid" column="schools.id" required="false" description="Comma seperated list of school ID numbers." type="array" default="701,702,703,704" />
+  </args>
   <columns>
       <column column="SCHOOLS.SCHOOL_NUMBER">a_sourcedId</column>
 	  <column column="SCHOOLS.ABBREVIATION">b_status</column>
@@ -44,7 +44,7 @@ left join (
     GROUP BY s.schoolid
     ORDER BY NO_OF_SECTIONS DESC
 ) q ON schools.SCHOOL_NUMBER = q.schoolid
-    where s.schoolid in (:schoolid1,:schoolid2,:schoolid3,:schoolid4)
+    where s.schoolid in :schoolid
 )
     ]]></sql>
   </query>
